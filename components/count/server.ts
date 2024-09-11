@@ -6,6 +6,8 @@ const DELAY = 1000
 
 export async function read() {
 	try {
+		// Imagine this fs.readFile is a fetch 
+		// so the data cache deduplicates the requests
 		const data = await fs.readFile(FILENAME, "utf-8")
 		return JSON.parse(data).count
 	} catch (err) {
