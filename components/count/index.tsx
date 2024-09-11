@@ -1,9 +1,9 @@
-import { IncrementClient } from "./client"
+import { CountClient, IncrementClient } from "./client"
 import { read } from "./server"
 
 export async function Count() {
 	const count = await read()
-	return <div>Count: {count}</div>
+	return <CountClient count={count} />
 }
 
 export async function Increment() {

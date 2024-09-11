@@ -3,11 +3,17 @@
 import { useCallback, useOptimistic } from "react"
 import { useRouter } from "next/navigation"
 
-import { increment } from "./server"
+import { useSyncedCount } from "./use-synced-count"
+
+export function CountClient(props: { count: number }) {
+	const { count } = useSyncedCount(props.count)
+	return <div>Count: {count}</div>
+}
 
 export function IncrementClient(props: { count: number }) {
 	const router = useRouter()
-	const [optimisticCount, incrementOptimisticCount] = useOptimistic(props.count, function (count) {
+	const { count, increment } = useSyncedCount(props.count)
+	const [optimisticCount, incrementOptimisticCount] = useOptimistic(count, function (count) {
 		return count + 1
 	})
 
