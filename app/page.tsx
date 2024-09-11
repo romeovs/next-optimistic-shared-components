@@ -1,4 +1,7 @@
+import { Count, Increment } from "../components/count"
 
 export default function Page() {
-	return <div>Hello</div>
+	return (
+		<Increment />
+	)
 }
